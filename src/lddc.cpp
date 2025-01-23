@@ -314,7 +314,7 @@ void Lddc::InitPointcloud2Msg(const StoragePacket& pkg, PointCloud2& cloud, uint
       cloud.header.stamp = ros::Time( timestamp / 1000000000.0);
   #elif defined BUILDING_ROS2
       //cloud.header.stamp = rclcpp::Time(timestamp);
-      cloud.header.stamp = cur_node_->get_clock()->now());
+      cloud.header.stamp = cur_node_->get_clock()->now();
   #endif
 
   std::vector<LivoxPointXyzrtlt> points;
@@ -486,7 +486,7 @@ void Lddc::InitImuMsg(const ImuData& imu_data, ImuMsg& imu_msg, uint64_t& timest
   imu_msg.header.stamp = ros::Time(timestamp / 1000000000.0);  // to ros time stamp
 #elif defined BUILDING_ROS2
   //imu_msg.header.stamp = rclcpp::Time(timestamp);  // to ros time stamp
-    imu.header.stamp = cur_node_->get_clock()->now());
+    imu_msg.header.stamp = cur_node_->get_clock()->now();
   #endif
 
   imu_msg.angular_velocity.x = imu_data.gyro_x;
